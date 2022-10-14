@@ -1,0 +1,109 @@
+﻿<Window x:Class="DDS_Controler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DDS_Controler"
+        mc:Ignorable="d"
+        Title="DDS Controller" Height="540" Width="325" ResizeMode="CanResize">
+    <Window.Resources>
+        <local:ColorConverter x:Key="ColorConverter"/>
+        <local:ConnectionSatatusConverter x:Key="ToPercentConverter"/>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <GroupBox Header="Channel Amplitude" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="180">
+            <Grid HorizontalAlignment="Stretch"   VerticalAlignment="Stretch" Margin="20,0,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="CH 1 [V]" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0"/>
+                <TextBlock Text="CH 2 [V]" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="0"/>
+                <TextBlock Text="CH 3 [V]" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="0"/>
+                <TextBlock Text="CH 4 [V]" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="3" Grid.Row="0"/>
+                <Slider x:Name="amplitude0_Slider" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="20" Maximum="255" Value="{Binding Amplitude, Mode=TwoWay}" SmallChange="1" LargeChange="8" IsSnapToTickEnabled="True" Orientation="Vertical" Grid.Column="0" Grid.Row="1"/>
+                <TextBox x:Name="amplitude0_Label" Text="{Binding AmplitudeInVolts, Mode=TwoWay, StringFormat=\{0:F2\}}" Width="40" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="0" Grid.Row="2" GotFocus="ClearTexBox"/>
+                <Slider x:Name="amplitude1_Slider" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="20" Maximum="255" Value="{Binding Amplitude, Mode=TwoWay}" SmallChange="1" LargeChange="8" IsSnapToTickEnabled="True" Orientation="Vertical" Grid.Column="1" Grid.Row="1"/>
+                <TextBox x:Name="amplitude1_Label" Text="{Binding AmplitudeInVolts, Mode=TwoWay, StringFormat=\{0:F\}}" Width="40" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" GotFocus="ClearTexBox"/>
+                <Slider x:Name="amplitude2_Slider" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="20" Maximum="255" Value="{Binding Amplitude, Mode=TwoWay}" SmallChange="1" LargeChange="8" IsSnapToTickEnabled="True" Orientation="Vertical" Grid.Column="2" Grid.Row="1"/>
+                <TextBox x:Name="amplitude2_Label" Text="{Binding AmplitudeInVolts, Mode=TwoWay, StringFormat=\{0:F\}}" Width="40" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="2" GotFocus="ClearTexBox"/>
+                <Slider x:Name="amplitude3_Slider" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="20" Maximum="255" Value="{Binding Amplitude, Mode=TwoWay}" SmallChange="1" LargeChange="8" IsSnapToTickEnabled="True" Orientation="Vertical" Grid.Column="3" Grid.Row="1"/>
+                <TextBox x:Name="amplitude3_Label"  Text="{Binding AmplitudeInVolts, Mode=TwoWay, StringFormat=\{0:F\}}" Width="40" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="3" Grid.Row="2" GotFocus="ClearTexBox"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Channel Phase" HorizontalAlignment="Stretch" Margin="10,200,10,0" VerticalAlignment="Top" Height="190">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="CH 1" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0"/>
+                    <TextBox x:Name="phase0_Label" Text="{Binding PhaseInDeg, Mode=TwoWay, StringFormat=Phase Shift: \{0:F1\}°}" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="120" TextAlignment="Right" Grid.Row="0" GotFocus="ClearTexBox"/>
+                    <Slider x:Name="phase0_Slider" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Maximum="4080" Value="{Binding Phase, Mode=TwoWay}" Height="20" SmallChange="16" LargeChange="128" IsSnapToTickEnabled="True" TickFrequency="16" Grid.Row="1"/>
+                </Grid>
+
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="CH 2" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0"/>
+                    <TextBox x:Name="phase1_Label" Text="{Binding PhaseInDeg, Mode=TwoWay, StringFormat=Phase Shift: \{0:F1\}°}" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="120" TextAlignment="Right" Grid.Row="0" GotFocus="ClearTexBox"/>
+                    <Slider x:Name="phase1_Slider" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Maximum="4080" Value="{Binding Phase, Mode=TwoWay}" Height="20" SmallChange="16" LargeChange="128" IsSnapToTickEnabled="True" TickFrequency="16" Grid.Row="1"/>
+                </Grid>
+
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="CH 3" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0"/>
+                    <TextBox x:Name="phase2_Label" Text="{Binding PhaseInDeg, Mode=TwoWay, StringFormat=Phase Shift: \{0:F1\}°}" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="120" TextAlignment="Right" Grid.Row="0" GotFocus="ClearTexBox"/>
+                    <Slider x:Name="phase2_Slider" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Maximum="4080" Value="{Binding Phase, Mode=TwoWay}" Height="20" SmallChange="16" LargeChange="128" IsSnapToTickEnabled="True" TickFrequency="16" Grid.Row="1"/>
+                </Grid>
+
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="CH 4" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0"/>
+                    <TextBox x:Name="phase3_Label" Text="{Binding PhaseInDeg, Mode=TwoWay, StringFormat=Phase Shift: \{0:F1\}°}" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="120" TextAlignment="Right" Grid.Row="0" GotFocus="ClearTexBox"/>
+                    <Slider x:Name="phase3_Slider" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top"  Maximum="4080" Value="{Binding Phase, Mode=TwoWay}" Height="20" SmallChange="16" LargeChange="128" IsSnapToTickEnabled="True" TickFrequency="16" Grid.Row="1"/>
+                </Grid>
+
+
+            </Grid>
+
+
+        </GroupBox>
+        
+        <Slider x:Name="frequency0_Slider" HorizontalAlignment="Stretch" Margin="10,412,10,0" VerticalAlignment="Top" Maximum="19030199" Value="{Binding Frequency, Mode=TwoWay}"   Height="26" SmallChange="1" LargeChange="128" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="839"/>
+        <TextBox x:Name="frequency0_Label" Text="{Binding FrequencyInHz, Mode=TwoWay, StringFormat=Frequency: \{0:N2\}Hz, ConverterCulture=de-DE}" HorizontalAlignment="Right" Margin="0,397,10,0" VerticalAlignment="Top" TextAlignment="Right" Width="180" GotFocus="ClearTexBox"/>
+        
+        <Button Content="Set Configuration" HorizontalAlignment="Left" Margin="10,437,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0,0.05" Click="Button_Click"/>
+        <!--Not Implemented-->
+        <!-- <Button x:Name="button" Content="Save as default" HorizontalAlignment="Left" Margin="10,461,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click_1"/>   -->
+
+        <Button x:Name="Button_Refresh" Content="Refresh Prots" HorizontalAlignment="Right" Margin="0,437,10,0" VerticalAlignment="Top" Width="88" Click="Button_Refresh_Click" />
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Right" Margin="0,460,10,0" VerticalAlignment="Top" Width="88" SelectionChanged="ComboBox_SelectionChanged" />
+        
+        <TextBlock x:Name="TextBlock_Status" Text="{Binding ConectionStatus, Converter={StaticResource ToPercentConverter}, Mode=OneWay, StringFormat=Status: \{0\}}" HorizontalAlignment="Left" Margin="10,483,0,0" VerticalAlignment="Top" Foreground="{Binding ConectionStatus, Converter={StaticResource ColorConverter}, Mode=OneWay}" TextAlignment="Right" />
+    </Grid>
+</Window>
